@@ -1,0 +1,51 @@
+{
+  "name": "storefront-backend",
+  "version": "1.0.0",
+  "description": "Storefront Backend",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "node_modules/.bin/db-migrate --sql-file",
+    "dev": "nodemon src/server.ts",
+    "lint": "npx prettier --write ./src && npx eslint src",
+    "build": "npx tsc",
+    "test": "npm run build && npx jasmine",
+    "prod": "node build/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m7md2112/storefront-backend.git"
+  },
+  "author": "Muhammad Mustafa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m7md2112/storefront-backend/issues"
+  },
+  "homepage": "https://github.com/m7md2112/storefront-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/jasmine": "^4.3.1",
+    "@types/node": "^18.11.12",
+    "@types/pg": "^8.6.5",
+    "@typescript-eslint/eslint-plugin": "^5.46.0",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "jasmine": "^4.5.0",
+    "jasmine-ts": "^0.4.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
+}
