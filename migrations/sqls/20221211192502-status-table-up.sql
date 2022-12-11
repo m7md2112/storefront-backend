@@ -1,0 +1,1 @@
+CREATE TABLE status (id SERIAL PRIMARY KEY, state VARCHAR(100));
