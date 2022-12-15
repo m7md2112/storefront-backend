@@ -4,7 +4,6 @@
   "description": "Storefront Backend",
   "main": "index.js",
   "scripts": {
-    "migrate": "node_modules/.bin/db-migrate --sql-file",
     "dev": "nodemon src/server.ts",
     "lint": "npx prettier --write ./src && npx eslint src",
     "build": "npx tsc",
