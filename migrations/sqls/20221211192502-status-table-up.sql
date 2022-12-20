@@ -1,1 +1,3 @@
 CREATE TABLE status (id SERIAL PRIMARY KEY, state VARCHAR(100));
+INSERT INTO status (state) VALUES ('ACTIVE');
+INSERT INTO status (state) VALUES ('COMPLETE');
