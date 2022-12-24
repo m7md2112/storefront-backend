@@ -9,10 +9,7 @@ export const createUser = (req: Request, res: Response): void => {
   userModel
     .createUser(req.body)
     .then((result) => {
-      res.send(`
-  create user status 
-  ${JSON.stringify(result)}
-  `);
+      res.send(result);
     })
     .catch((err) => {
       res.send(err.message);
@@ -28,10 +25,16 @@ export const loginUser = (req: Request, res: Response): void => {
       res.send({ ...result, token });
     })
     .catch((err) => {
-      res.send(err.message);
+      res.status(401).send(`${err.message as string}
+      please enter user id and password as 
+
+      {
+        "id": 1,
+        "password": "password" 
+      }
+      `);
     });
 };
-
 export const deleteUser = (req: Request, res: Response): void => {
   const id: string = req.params.id;
   userModel
