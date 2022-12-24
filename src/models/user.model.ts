@@ -15,7 +15,13 @@ export class UserModel {
       user.last_name === undefined ||
       user.password === undefined
     ) {
-      return "cannot create user without first and last name and password";
+      return `cannot create user without first and last name and password
+      {
+        "first_name": "",
+        "last_name": "",
+        "password": ""
+      }
+      `;
     }
 
     const hashedPassword = bcrypt.hashSync(
@@ -41,6 +47,7 @@ export class UserModel {
     const conn = await dbClient.connect();
     const sql = `select password from users where id = $1`;
     const result = await conn.query(sql, [id]);
+    if(result.rows[0] === undefined){throw new Error("failed to find user please check user id")}
     const { password } = result.rows[0];
     const isUserLogIn: boolean = bcrypt.compareSync(
       `${inputPassword}${PASSWORD_PEPPER as string}`,
@@ -49,9 +56,9 @@ export class UserModel {
     if (isUserLogIn) {
       const sql = `select id, first_name, last_name from users where id = $1`;
       const result = await conn.query(sql, [id]);
+      conn.release();
       return result.rows[0];
-    }
-    await conn.release();
+    } else {throw new Error("please check password")}
   }
 
   async getAllUsers(): Promise<userType[]> {

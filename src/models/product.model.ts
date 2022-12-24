@@ -9,7 +9,15 @@ export interface Product {
 export class ProductModel {
   async createProduct(product: Product): Promise<unknown> {
     if (product.price === undefined || product.name === undefined) {
-      return "Product name and price must be defined";
+      throw new Error
+       (
+        `Product name and price must be defined
+        {
+          "name": "product name",
+          "price": "product price"
+        }
+        `
+      );
     }
     const conn = await dbClient.connect();
     const sql =
