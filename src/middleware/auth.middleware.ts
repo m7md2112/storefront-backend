@@ -19,6 +19,7 @@ export const authMiddleware = (
         res.status(401).send(err);
       }
     }
+  } else {
+    res.status(401).send("Unauthorized");
   }
-  res.status(401).send("Unauthorized");
 };
