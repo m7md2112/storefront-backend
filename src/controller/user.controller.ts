@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { UserModel } from "../models/user.model";
+import { UserModel, userType } from "../models/user.model";
+import { PRIVATE_KEY } from "../database";
+import jwt from "jsonwebtoken";
 
 const userModel = new UserModel();
 
@@ -16,6 +18,20 @@ export const createUser = (req: Request, res: Response): void => {
       res.send(err.message);
     });
 };
+
+export const loginUser = (req: Request, res: Response): void => {
+  const { id, password } = req.body;
+  userModel
+    .loginUser(id, password)
+    .then((result) => {
+      const token = jwt.sign(result as userType, PRIVATE_KEY as string);
+      res.send({ ...result, token });
+    })
+    .catch((err) => {
+      res.send(err.message);
+    });
+};
+
 export const deleteUser = (req: Request, res: Response): void => {
   const id: string = req.params.id;
   userModel
