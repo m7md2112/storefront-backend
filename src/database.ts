@@ -8,7 +8,7 @@ const {
   POSTGRES_PORT,
   POSTGRES_DATABASE,
   POSTGRES_USER,
-  POSTGRES_PASSWORD,
+  POSTGRES_PASSWORD
 } = process.env;
 
 export const dbClient = new Pool({
@@ -18,3 +18,5 @@ export const dbClient = new Pool({
   user: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
 });
+
+export const { SALT_ROUND, PASSWORD_PEPPER, PRIVATE_KEY } = process.env;
