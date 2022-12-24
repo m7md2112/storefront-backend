@@ -33,12 +33,15 @@ export const deleteOrder = (req: Request, res: Response): void => {
 };
 
 export const addProductToOrder = (req: Request, res: Response): void => {
-  orderModel.addProductToOrder(req.body, req.params.id).then((result) => {
-    res.send(`
+  orderModel
+    .addProductToOrder(req.body, req.params.id)
+    .then((result) => {
+      res.send(`
   add Product to Order:
   ${JSON.stringify(result)}
   `);
-  }).catch(console.log)
+    })
+    .catch(console.log);
 };
 
 export const getProductsOrderByOrderId = (

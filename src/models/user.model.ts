@@ -18,7 +18,10 @@ export class UserModel {
       return "cannot create user without first and last name and password";
     }
 
-    const hashedPassword = bcrypt.hashSync(`${ user.password }${PASSWORD_PEPPER as string}`, Number(SALT_ROUND));
+    const hashedPassword = bcrypt.hashSync(
+      `${user.password}${PASSWORD_PEPPER as string}`,
+      Number(SALT_ROUND)
+    );
 
     const conn = await dbClient.connect();
     const sql = `insert into users (first_name, last_name, password) values ($1,$2,$3) RETURNING *`;
@@ -31,12 +34,18 @@ export class UserModel {
     return result.rows;
   }
 
-  async loginUser(id: string, inputPassword: string): Promise<userType | undefined> {
+  async loginUser(
+    id: string,
+    inputPassword: string
+  ): Promise<userType | undefined> {
     const conn = await dbClient.connect();
     const sql = `select password from users where id = $1`;
     const result = await conn.query(sql, [id]);
-    const {password} = result.rows[0];
-    const isUserLogIn: boolean = bcrypt.compareSync(`${inputPassword}${PASSWORD_PEPPER as string}`, password)
+    const { password } = result.rows[0];
+    const isUserLogIn: boolean = bcrypt.compareSync(
+      `${inputPassword}${PASSWORD_PEPPER as string}`,
+      password
+    );
     if (isUserLogIn) {
       const sql = `select id, first_name, last_name from users where id = $1`;
       const result = await conn.query(sql, [id]);
@@ -44,7 +53,6 @@ export class UserModel {
     }
     await conn.release();
   }
-
 
   async getAllUsers(): Promise<userType[]> {
     const conn = await dbClient.connect();
