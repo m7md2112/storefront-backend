@@ -4,7 +4,7 @@ import { routers } from "./routes/api/index.routers";
 
 dotenv.config();
 
-const app: express.Application = express();
+export const app: express.Application = express();
 const port = process.env.HTTP_PORT as string;
 
 app.use(express.json());
