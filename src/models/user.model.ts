@@ -9,7 +9,7 @@ export interface userType {
 }
 
 export class UserModel {
-  async createUser(user: userType): Promise<unknown> {
+  async createUser(user: userType): Promise<userType[] | string> {
     if (
       user.first_name === undefined ||
       user.last_name === undefined ||
@@ -47,7 +47,9 @@ export class UserModel {
     const conn = await dbClient.connect();
     const sql = `select password from users where id = $1`;
     const result = await conn.query(sql, [id]);
-    if(result.rows[0] === undefined){throw new Error("failed to find user please check user id")}
+    if (result.rows[0] === undefined) {
+      throw new Error("failed to find user please check user id");
+    }
     const { password } = result.rows[0];
     const isUserLogIn: boolean = bcrypt.compareSync(
       `${inputPassword}${PASSWORD_PEPPER as string}`,
@@ -58,7 +60,9 @@ export class UserModel {
       const result = await conn.query(sql, [id]);
       conn.release();
       return result.rows[0];
-    } else {throw new Error("please check password")}
+    } else {
+      throw new Error("please check password");
+    }
   }
 
   async getAllUsers(): Promise<userType[]> {

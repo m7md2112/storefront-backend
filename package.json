@@ -4,10 +4,10 @@
   "description": "Storefront Backend",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "set ENV=dev&& db-migrate --env dev up && nodemon src/server.ts",
     "lint": "npx prettier --write ./src && npx eslint src",
     "build": "npx tsc",
-    "test": "npm run build && npx jasmine",
+    "test": "set ENV=test&& db-migrate --env test up && npm run build && npx jasmine && db-migrate --env test reset",
     "prod": "npm run build && node build/server.js"
   },
   "repository": {

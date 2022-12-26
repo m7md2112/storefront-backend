@@ -9,8 +9,7 @@ export interface Product {
 export class ProductModel {
   async createProduct(product: Product): Promise<unknown> {
     if (product.price === undefined || product.name === undefined) {
-      throw new Error
-       (
+      throw new Error(
         `Product name and price must be defined
         {
           "name": "product name",
