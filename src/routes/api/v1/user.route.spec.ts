@@ -8,14 +8,14 @@ describe("/api/user", () => {
   it("should create a new user", async () => {
     const res = await appServer
       .post("/api/user")
-      .send({ first_name: "First", last_name: "Last", password: "Password" });
+      .send({ first_name: "First", last_name: "Last", password: "password" });
     expect(res.status).toBe(200);
   });
 
   it("should login", async () => {
     const res = await appServer
       .post("/api/user/login")
-      .send({ id: "1", password: "Password" });
+      .send({ id: "3", password: "password" });
     expect(res.status).toBe(200);
   });
 
