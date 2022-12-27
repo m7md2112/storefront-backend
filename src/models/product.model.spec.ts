@@ -22,7 +22,7 @@ describe("Product Model", () => {
   });
 
   it("should delete a product", async () => {
-    const product: unknown = await testProductModel.deleteProductById("1");
+    const product: unknown = await testProductModel.deleteProductById("3");
     expect(product).toBeDefined();
   });
 });

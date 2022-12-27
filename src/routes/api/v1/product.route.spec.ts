@@ -3,14 +3,15 @@ import supertest from "supertest";
 import { app } from "../../../server";
 
 const appServer = supertest(app);
+const testToken: string = process.env.TEST_TOKEN as string;
 
 describe("/api/product/", () => {
-  it("shouldn't create a new product", async () => {
-    const response = await appServer.post("/api/product/").send({
+  it("should create a new product", async () => {
+    const response = await appServer.post("/api/product/").set('Authorization', 'Bearer ' + testToken).send({
       name: "product name",
       price: 55,
     });
-    expect(response.status).toBe(401);
+    expect(response.status).toBe(200);
   });
 
   it("should get all products", async () => {
@@ -23,8 +24,8 @@ describe("/api/product/", () => {
     expect(response.status).toBe(200);
   });
 
-  it("shouldn't delete a product", async () => {
-    const response = await appServer.delete("/api/product/1");
-    expect(response.status).toBe(401);
+  it("should delete a product", async () => {
+    const response = await appServer.delete("/api/product/1").set('Authorization', 'Bearer ' + testToken);
+    expect(response.status).toBe(200);
   });
 });
