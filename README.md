@@ -31,6 +31,7 @@ This repo contains a basic Node and Express app to get you started in constructi
      SALT_ROUND=10
      PASSWORD_PEPPER="%&yf2A3sfX^xJfwn6e"
      PRIVATE_KEY="%o3GqBZ$ZLd42ajb2M"
+     TEST_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IkpvaG4iLCJsYXN0X25hbWUiOiJEb2UiLCJpYXQiOjE2NzIxNDQxMTd9.KA3t8Dq5nXoX-RhKLvn4c2GdCbgCVIvKqnTzQzuGiBk"
 ***
     4-install db-migrate via [npm install -g db-migrate]
     and run in terminal [db-migrate up]
