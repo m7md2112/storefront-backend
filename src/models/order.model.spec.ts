@@ -26,9 +26,11 @@ describe("Order Model", () => {
     const products = await testOrderModel.getProductsOrderByOrderId("1");
     expect(products).toBeDefined();
   });
+
+  it("should delete order", async () => {
+    const order = await testOrderModel.deleteOrderById("2");
+    expect(order).toEqual({ id: 2, user_id: "2", status_id: "1" });
+  });
 });
 
-it("should delete order", async () => {
-  const order = await testOrderModel.deleteOrderById("2");
-  expect(order).toEqual({ id: 2, user_id: "2", status_id: "1" });
-});
+

@@ -37,6 +37,24 @@ This repo contains a basic Node and Express app to get you started in constructi
 ***
     5-run in terminal npm run dev
 
+## Database Schema 
+````
+List of relations
+Schema |          Name          |   Type   |  Owner   
+--------+------------------------+----------+----------
+public | migrations             | table    | postgres
+public | migrations_id_seq      | sequence | postgres
+public | orders                 | table    | postgres
+public | orders_id_seq          | sequence | postgres
+public | products               | table    | postgres
+public | products_id_seq        | sequence | postgres
+public | products_orders        | table    | postgres
+public | products_orders_id_seq | sequence | postgres
+public | status                 | table    | postgres
+public | status_id_seq          | sequence | postgres
+public | users                  | table    | postgres
+
+````
 ## Endpoints
 
 ### /api/user/
