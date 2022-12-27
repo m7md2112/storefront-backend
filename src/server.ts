@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { routers } from "./routes/api/index.routers";
+import { errorHandler } from "./middleware/error-handler";
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ app.get("/", function (req: Request, res: Response) {
 });
 
 app.use("/api", routers);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
