@@ -40,3 +40,41 @@ These are the notes from a meeting with the frontend developer that describe wha
 - user_id
 - status of order (active or complete)
 
+
+### classDiagram
+
+```
+
+class orders {
+   bigint user_id
+   bigint status_id
+   integer id
+}
+class products {
+   varchar(100) name
+   money price
+   integer id
+}
+class products_orders {
+   bigint product_id
+   integer quantity
+   bigint order_id
+   integer id
+}
+class status {
+   varchar(100) state
+   integer id
+}
+class users {
+   varchar(100) first_name
+   varchar(100) last_name
+   varchar password
+   integer id
+}
+
+orders  -->  status : status_id:id
+orders  -->  users : user_id:id
+products_orders  -->  orders : order_id:id
+products_orders  -->  products : product_id:id
+
+```
